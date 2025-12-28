@@ -1,0 +1,19 @@
+name: Discord Notifications
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send message to Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -X POST \
+          -H "Content-Type: application/json" \
+          -d "{\"content\":\"✅ Workflow works! Push by ${{ github.actor }}\"}" \
+          $DISCORD_WEBHOOK
