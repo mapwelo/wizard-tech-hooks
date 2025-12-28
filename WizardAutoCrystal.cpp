@@ -1,3 +1,5 @@
+//for 1.20.51 i think
+
 #include "WizardAutoCrystal.h"
 #include "../Player/PacketMine.h"
 #include "../../../Client.h"
