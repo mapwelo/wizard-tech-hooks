@@ -12,8 +12,37 @@ jobs:
       - name: Send message to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -d "{\"content\":\"✅ Workflow works! Push by ${{ github.actor }}\"}" \
-          $DISCORD_WEBHOOK
+          - name: Send message to Discord
+  env:
+    DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+  run: |
+    curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "embeds": [
+        {
+          "title": "📝 New Commit Pushed",
+          "description": "**${{ github.event.head_commit.message }}**",
+          "url": "https://github.com/${{ github.repository }}/commit/${{ github.sha }}",
+          "color": 5814783,
+          "fields": [
+            {
+              "name": "Author",
+              "value": "${{ github.actor }}",
+              "inline": true
+            },
+            {
+              "name": "Branch",
+              "value": "${{ github.ref_name }}",
+              "inline": true
+            },
+            {
+              "name": "Repository",
+              "value": "${{ github.repository }}",
+              "inline": false
+            }
+          ]
+        }
+      ]
+    }' \
+    $DISCORD_WEBHOOK
