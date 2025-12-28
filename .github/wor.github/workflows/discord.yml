@@ -15,5 +15,5 @@ jobs:
         run: |
           curl -X POST \
           -H "Content-Type: application/json" \
-          -d "{\"content\":\"🚀 New push to main by ${{ github.actor }}\n🔗 https://github.com/${{ github.repository }}/commit/${{ github.sha }}\"}" \
+          -d "{\"content\":\" New push to main by ${{ github.actor }}\n https://github.com/${{ github.repository }}/commit/${{ github.sha }}\"}" \
           $DISCORD_WEBHOOK
