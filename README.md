@@ -1,2 +1,2 @@
 # wizard-tech-hooks
-all of mapwelos custom wizard tech for bedrock and java hacked clients.
+archive of tech for bedrock and java hacked clients from me or others
